@@ -50,7 +50,7 @@ jobs:
 
     - name: Install SDK and Toolchain
       run: |
-        make telink/tools/all
+        make telink/tools/all setup_venv
         #make setup || (
         #  echo "dumping log:" &&
         #  cat /home/runner/work/tuya-zigbee-switch/tuya-zigbee-switch/silabs_tools/slc-cli/bin/slc-cli/configuration/*.log
