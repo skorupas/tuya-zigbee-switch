@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: github-runner
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
@@ -50,10 +50,11 @@ jobs:
 
     - name: Install SDK and Toolchain
       run: |
-        make setup || (
-          echo "dumping log:" &&
-          cat /home/runner/work/tuya-zigbee-switch/tuya-zigbee-switch/silabs_tools/slc-cli/bin/slc-cli/configuration/*.log
-        )
+        make telink/tools/all
+        #make setup || (
+        #  echo "dumping log:" &&
+        #  cat /home/runner/work/tuya-zigbee-switch/tuya-zigbee-switch/silabs_tools/slc-cli/bin/slc-cli/configuration/*.log
+        #)
 
     - name: Clear out index files
       run: |
