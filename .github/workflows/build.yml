@@ -48,12 +48,12 @@ jobs:
         path: .venv
         key: python-venv-${{ hashFiles('requirements.txt') }}
 
-    - name: Install SDK and Toolchain
-      run: |
-        make setup || (
-          echo "dumping log:" &&
-          cat /home/runner/work/tuya-zigbee-switch/tuya-zigbee-switch/silabs_tools/slc-cli/bin/slc-cli/configuration/*.log
-        )
+#    - name: Install SDK and Toolchain
+#      run: |
+#        make setup || (
+#          echo "dumping log:" &&
+#          cat /home/runner/work/tuya-zigbee-switch/tuya-zigbee-switch/silabs_tools/slc-cli/bin/slc-cli/configuration/*.log
+#        )
 
     - name: Clear out index files
       run: |
