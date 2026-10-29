@@ -97,7 +97,7 @@ MODULE_TUYA_OXT_TS0002:
   threads: https://github.com/romasku/tuya-zigbee-switch/issues/49
   store: null
 MODULE_TUYA_OXT_TS130F_2GANG:
-  human_name: Tuya/OXT 2-gang curtains
+  human_name: Tuya/OXT 2-gang curtains switch
   category: module
   power: mains
   neutral: required
@@ -120,6 +120,6 @@ MODULE_TUYA_OXT_TS130F_2GANG:
   firmware_image_type: 45597
   build: yes
   status: fully_supported
-  info: Supported - Reset button on B4 pin, same as switch
-  threads: https://github.com/romasku/tuya-zigbee-switch/issues/270
-  store: https://www.aliexpress.com/item/1005003864471089.html
+  info: Reset button on pin D2
+  threads: null
+  store: https://psmart.pl/pl/p/Modul-OXT-Mini-Sterownik-do-Rolet-ZigBee-TUYA-Home-Assistant/1544
