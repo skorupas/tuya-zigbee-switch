@@ -111,8 +111,8 @@ MODULE_TUYA_OXT_TS130F_2GANG:
   tuya_module: ZTU
   mcu_family: Telink
   mcu: TLSR8258
-  config_str: eg7awg6a;TS130F-OXT-DUAL;LC1;XB4D2u;CC0C4;XC3C2u;CD4D7;
-  alt_config_str: eg7awg6a;TS130F-OXT-DUAL;LC1;SB4u;RC0;SD2u;RC4;SC3u;RD4;SC2u;RD7;
+  config_str: eg7awg6a;TS130F-OXT-DUAL;BD2u;LC0;CC2C3;XB4B5u;
+  alt_config_str: null
   old_manufacturer_names: null
   old_zb_models: null
   stock_manufacturer_id: 4417
