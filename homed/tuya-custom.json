@@ -709,8 +709,7 @@
       ],
       "options": {
         "endpointName": {
-          "1": "cover_left",
-          "2": "cover_right"
+          "1": "cover"
         }
       }
     },

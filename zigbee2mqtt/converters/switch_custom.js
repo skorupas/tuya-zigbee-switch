@@ -643,48 +643,29 @@ const definitions = [
         vendor: "Tuya-custom",
         description: "Custom switch (https://github.com/romasku/tuya-zigbee-switch)",
         extend: [
-            deviceEndpoints({ endpoints: {"cover_switch_left": 1, "cover_switch_right": 2, "cover_left": 3, "cover_right": 4, } }),
-            romasku.deviceConfig("device_config", "cover_switch_left"),
-            romasku.multiPressResetCount("multi_press_reset_count", "cover_switch_left"),
-            romasku.networkIndicator("network_led", "cover_switch_left"),
+            deviceEndpoints({ endpoints: {"cover_switch": 1, "cover": 2, } }),
+            romasku.deviceConfig("device_config", "cover_switch"),
+            romasku.multiPressResetCount("multi_press_reset_count", "cover_switch"),
+            romasku.networkIndicator("network_led", "cover_switch"),
             windowCovering({ 
                 controls: ["lift"],
                 coverInverted: true,
                 configureReporting: true,
-                endpointNames: ["cover_left"]
+                endpointNames: ["cover"]
             }),
-            romasku.coverMoving("moving", "cover_left"),
-            romasku.coverMotorReversal("cover_left_motor_reversal", "cover_left"),
-            romasku.coverOpenTime("cover_left_open_time", "cover_left"),
-            romasku.coverCloseTime("cover_left_close_time", "cover_left"),
-            romasku.coverOpenDeadzone("cover_left_open_deadzone", "cover_left"),
-            romasku.coverClosedDeadzone("cover_left_closed_deadzone", "cover_left"),
-            windowCovering({ 
-                controls: ["lift"],
-                coverInverted: true,
-                configureReporting: true,
-                endpointNames: ["cover_right"]
-            }),
-            romasku.coverMoving("moving", "cover_right"),
-            romasku.coverMotorReversal("cover_right_motor_reversal", "cover_right"),
-            romasku.coverOpenTime("cover_right_open_time", "cover_right"),
-            romasku.coverCloseTime("cover_right_close_time", "cover_right"),
-            romasku.coverOpenDeadzone("cover_right_open_deadzone", "cover_right"),
-            romasku.coverClosedDeadzone("cover_right_closed_deadzone", "cover_right"),
-            romasku.coverSwitchPressAction("cover_switch_left_press_action", "cover_switch_left"),
-            romasku.coverSwitchType("cover_switch_left_type", "cover_switch_left"),
-            romasku.coverSwitchInvert("cover_switch_left_invert", "cover_switch_left"),
-            romasku.coverSwitchCoverIndex("cover_switch_left_cover_index", "cover_switch_left", 2),
-            romasku.coverSwitchLocalMode("cover_switch_left_local_mode", "cover_switch_left"),
-            romasku.coverSwitchBindedMode("cover_switch_left_binded_mode", "cover_switch_left"),
-            romasku.coverSwitchLongPressDuration("cover_switch_left_long_press_duration", "cover_switch_left"),
-            romasku.coverSwitchPressAction("cover_switch_right_press_action", "cover_switch_right"),
-            romasku.coverSwitchType("cover_switch_right_type", "cover_switch_right"),
-            romasku.coverSwitchInvert("cover_switch_right_invert", "cover_switch_right"),
-            romasku.coverSwitchCoverIndex("cover_switch_right_cover_index", "cover_switch_right", 2),
-            romasku.coverSwitchLocalMode("cover_switch_right_local_mode", "cover_switch_right"),
-            romasku.coverSwitchBindedMode("cover_switch_right_binded_mode", "cover_switch_right"),
-            romasku.coverSwitchLongPressDuration("cover_switch_right_long_press_duration", "cover_switch_right"),
+            romasku.coverMoving("moving", "cover"),
+            romasku.coverMotorReversal("cover_motor_reversal", "cover"),
+            romasku.coverOpenTime("cover_open_time", "cover"),
+            romasku.coverCloseTime("cover_close_time", "cover"),
+            romasku.coverOpenDeadzone("cover_open_deadzone", "cover"),
+            romasku.coverClosedDeadzone("cover_closed_deadzone", "cover"),
+            romasku.coverSwitchPressAction("cover_switch_press_action", "cover_switch"),
+            romasku.coverSwitchType("cover_switch_type", "cover_switch"),
+            romasku.coverSwitchInvert("cover_switch_invert", "cover_switch"),
+            romasku.coverSwitchCoverIndex("cover_switch_cover_index", "cover_switch", 1),
+            romasku.coverSwitchLocalMode("cover_switch_local_mode", "cover_switch"),
+            romasku.coverSwitchBindedMode("cover_switch_binded_mode", "cover_switch"),
+            romasku.coverSwitchLongPressDuration("cover_switch_long_press_duration", "cover_switch"),
         ],
         meta: { multiEndpoint: true },
         configure: async (device, coordinatorEndpoint, logger) => {
@@ -700,30 +681,10 @@ const definitions = [
                     reportableChange: 1,
                 },
             ]);
-            const coverSwitch2 = device.getEndpoint(2);
-            await reporting.bind(coverSwitch2, coordinatorEndpoint, ["genMultistateInput"]);
-            await coverSwitch2.configureReporting("genMultistateInput", [
-                {
-                    attribute: "presentValue",
-                    minimumReportInterval: 0,
-                    maximumReportInterval: constants.repInterval.MAX,
-                    reportableChange: 1,
-                },
-            ]);
 
-            const cover1 = device.getEndpoint(3);
+            const cover1 = device.getEndpoint(2);
             await reporting.bind(cover1, coordinatorEndpoint, ["closuresWindowCovering"]);
             await cover1.configureReporting("closuresWindowCovering", [
-                {
-                    attribute: {ID: 0xff00, type: Zcl.DataType.ENUM8},
-                    minimumReportInterval: 0,
-                    maximumReportInterval: constants.repInterval.MAX,
-                    reportableChange: 1,
-                },
-            ]);
-            const cover2 = device.getEndpoint(4);
-            await reporting.bind(cover2, coordinatorEndpoint, ["closuresWindowCovering"]);
-            await cover2.configureReporting("closuresWindowCovering", [
                 {
                     attribute: {ID: 0xff00, type: Zcl.DataType.ENUM8},
                     minimumReportInterval: 0,
